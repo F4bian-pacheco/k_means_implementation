@@ -15,11 +15,13 @@ void mostrar_data(Vector* ELEMS, int N_DB, int dim);
 Vector* inicializar_centroides(Vector* ELEMS, int N_DB, int dim);
 float calcular_distancia(float* punto_1, float* centroide, int dim);
 int centroide_mas_cercano(float* punto, int dim_pto, Vector* centroides, int num_centroides);
+void recalcular_centroides(Vector* centroides, int* idx_centroides_por_punto, Vector* ELEMS, int num_centroides, int num_puntos, int dim);
+
 
 
 int main(){
     int N_DB,i,j;
-    Vector* ELEMS;
+    Vector *ELEMS, *centroides;
 
     //se ingresa la cantidad de vectores
     //printf("ingresa la cantidad de vectores: ");
@@ -41,14 +43,14 @@ int main(){
         } 
     }
     
-    Vector* centroides = inicializar_centroides(ELEMS, N_DB, DIM);
+    centroides = inicializar_centroides(ELEMS, N_DB, DIM);
     
     mostrar_data(ELEMS, N_DB, DIM);
     printf("\ncentroides\n\n");
     mostrar_data(centroides,K,DIM);
     printf("%.2f\n", calcular_distancia(&ELEMS->data[0], &centroides->data[0] , DIM));
     
-    int* idx_centroides_por_punto = (int*)malloc(N_DB*sizeof(int));
+    int* idx_centroides_por_punto = (int*)malloc(N_DB*sizeof(int));// esto puede ser una funcion para mostrar lo que tengo que mostrar en pantalla
 
     for (int i = 0; i < N_DB; i++) {
         float* punto = ELEMS[i].data;
