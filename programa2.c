@@ -5,7 +5,7 @@
 
 #define DIM 2
 //#define T 8
-#define K 2
+#define K 3
 
 typedef struct{
     float* data;
