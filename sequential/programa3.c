@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdlib.h>
+#include <sys/time.h>
 #include <time.h>
 #include <string.h>
 #include <unistd.h>
@@ -46,6 +47,8 @@ void mostrar_indices(int* idx_centroides_por_punto, int N_DB);
 int main(){
     int N_DB,i,j,k = 0;
     Vector *ELEMS, *centroides;
+    struct timeval t1, t2;
+    float real_time;
 
     //se ingresa la cantidad de vectores
     //printf("ingresa la cantidad de vectores: ");
@@ -67,7 +70,7 @@ int main(){
         } 
     }
     
-
+    gettimeofday(&t1, 0);
     centroides = inicializar_centroides(ELEMS, N_DB, DIM);
     // centroides = inicializar_centroides_kmeanspp(ELEMS, N_DB, DIM);
     
@@ -120,13 +123,15 @@ int main(){
         // mostrar_data(centroides,K,DIM);
 
         k++;
-        // sleep(1);
     }
     // printf("Iteraciones: %d\n",k);
     // printf("\nCentroides finales:\n\n");
     // mostrar_data(centroides,K,DIM);
     // printf("\n\n");
     // mostrar_data(ELEMS, N_DB, DIM);
+    gettimeofday(&t2, 0);
+    real_time = (t2.tv_sec - t1.tv_sec) + (float)(t2.tv_usec - t1.tv_usec) / 1000000;
+    printf("\nTiempo Real = %f\n", real_time);     
 
     return 0;
 }
