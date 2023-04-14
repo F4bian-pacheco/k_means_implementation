@@ -137,52 +137,6 @@ int main(){
 }
 
 
-Vector* inicializar_centroides_kmeanspp(Vector* ELEMS, int N_DB, int dim) {
-    Vector* centroides = (Vector*)malloc(K*sizeof(Vector));
-    srand(time(NULL));
-
-    // Seleccionar el primer centroide al azar
-    int centroide_idx = rand() % N_DB;
-    centroides[0] = ELEMS[centroide_idx];
-
-    // Seleccionar los siguientes centroides usando k-means++
-    for (int i = 1; i < K; i++) {
-        // Calcular las distancias al cuadrado de cada punto al centroide más cercano
-        double* distancias = (double*)malloc(N_DB*sizeof(double));
-        for (int j = 0; j < N_DB; j++) {
-            double min_dist = INFINITY;
-            for (int l = 0; l < i; l++) {
-                double dist = distancia_cuadrado(ELEMS[j], centroides[l], dim);
-                if (dist < min_dist) {
-                    min_dist = dist;
-                }
-            }
-            distancias[j] = min_dist;
-        }
-
-        // Seleccionar el siguiente centroide usando las distancias al cuadrado
-        double dist_total = 0.0;
-        for (int j = 0; j < N_DB; j++) {
-            dist_total += distancias[j];
-        }
-        double r = ((double)rand() / RAND_MAX) * dist_total;
-        double acumulador = 0.0;
-        for (int j = 0; j < N_DB; j++) {
-            acumulador += distancias[j];
-            if (acumulador >= r) {
-                centroides[i] = ELEMS[j];
-                break;
-            }
-        }
-
-        free(distancias);
-    }
-
-    return centroides;
-}
-
-
-
 Vector* inicializar_centroides(Vector *ELEMS, int N_DB, int dim){
     Vector* centroides = (Vector*)malloc(K*sizeof(Vector));
     Vector centroide_elegido;
