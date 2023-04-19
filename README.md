@@ -10,12 +10,14 @@ El repositorio contiene dos carpetas principales:
 * sequential: esta carpeta contiene la implementación secuencial del algoritmo K-means en C.
 * parallel: esta carpeta contiene la implementación paralela del algoritmo K-means utilizando OpenMP en C.
 Además, el repositorio contiene un archivo README.md que proporciona una guía para compilar y ejecutar ambas implementaciones.
+* tests: carpeta donde se encuentran test de datos
 
 ## Cómo usar el repositorio
 Para usar este repositorio, siga estos pasos:
 
 1. Clone el repositorio en su máquina local.
 2. Abra una terminal y vaya a la carpeta "sequential" o "parallel", según la implementación que desee utilizar.
-3. Compile el código utilizando el siguiente comando: gcc kmeans.c -o kmeans -lm
-4. Ejecute el archivo generado con el comando ./kmeans < data.txt. El programa leerá los datos del archivo data.txt y realizará el agrupamiento utilizando el algoritmo K-means.
-5. La salida del programa será una lista de números que corresponden al centroide al que pertenece cada punto del archivo data.txt.
+3. Compile el código utilizando el siguiente comando: gcc programa.c -o programa -lm si entra a la carpeta "sequential"
+  * use gcc programa_p.c -o programa_p -fopenmp -lm, si entra a la carpeta "parallel"
+5. Ejecute el archivo generado con el comando ./programa < ../tests/Test_BD_95000.txt. El programa leerá los datos del archivo y realizará el agrupamiento utilizando el algoritmo K-means.
+6. La salida del programa será una lista de números que corresponden al centroide al que pertenece cada punto del archivo de datos.
