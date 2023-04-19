@@ -11,7 +11,7 @@
 
 #define DIM 20
 #define T 8
-#define K 4
+#define K 3
 
 typedef struct
 {
@@ -92,7 +92,7 @@ int main()
         }
         recalcular_centroides(centroides, idx_centroides_por_punto, ELEMS, K, N_DB, DIM);
         if (comparar_centroides(centroides, centroides_anteriores, K, DIM) == 1){
-            //mostrar_indices(idx_centroides_por_punto, N_DB);
+            mostrar_indices(idx_centroides_por_punto, N_DB);
             break;
         }
         
@@ -103,8 +103,8 @@ int main()
     }
 
     //mostrar_indices(idx_centroides_por_punto, N_DB);
-    printf("centroides finales\n");
-    mostrar_data(centroides, K, DIM);
+    //printf("centroides finales\n");
+    //mostrar_data(centroides, K, DIM);
 
 
 
